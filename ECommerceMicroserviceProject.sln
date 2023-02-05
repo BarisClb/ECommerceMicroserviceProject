@@ -3,9 +3,35 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CEE11132-7C67-4A85-97AD-1A6FDBA87C49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService", "Services\ProductService\ProductService.csproj", "{27D147ED-B354-43BD-94EB-620D426D8516}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{96777BC7-141B-4D7A-8CAB-E8D2DB0D4BC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "Shared\SharedLibrary\SharedLibrary.csproj", "{7FEA8C9B-1220-45A2-98A9-52B6436A5CC7}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27D147ED-B354-43BD-94EB-620D426D8516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D147ED-B354-43BD-94EB-620D426D8516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D147ED-B354-43BD-94EB-620D426D8516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D147ED-B354-43BD-94EB-620D426D8516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FEA8C9B-1220-45A2-98A9-52B6436A5CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FEA8C9B-1220-45A2-98A9-52B6436A5CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FEA8C9B-1220-45A2-98A9-52B6436A5CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FEA8C9B-1220-45A2-98A9-52B6436A5CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27D147ED-B354-43BD-94EB-620D426D8516} = {CEE11132-7C67-4A85-97AD-1A6FDBA87C49}
+		{7FEA8C9B-1220-45A2-98A9-52B6436A5CC7} = {96777BC7-141B-4D7A-8CAB-E8D2DB0D4BC7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {74D0FBF3-C0D1-440D-9202-2A7540C20402}
