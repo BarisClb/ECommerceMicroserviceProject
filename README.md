@@ -47,8 +47,8 @@
    - Extensions  
      - [All Extensions](https://github.com/BarisClb/ECommerceMicroserviceProject/blob/master/Shared/SharedLibrary/Extensions)  
      - Dynamic Predicate Builder  
-	   - [Method Extension](https://github.com/BarisClb/ECommerceMicroserviceProject/blob/master/Shared/SharedLibrary/Extensions/Predica)  
-	   - [Usage](https://github.com/BarisClb/ECommerceMicroserviceProject/blob/master/Services/UserService/Application/Queries/Address/GetAddressByUserId/GetAddressesByUserIdQueryHandler.cs)  
+	   - [Method Extension](https://github.com/BarisClb/ECommerceMicroserviceProject/blob/master/Shared/SharedLibrary/Extensions/PredicateBuilder.cs)  
+	   - [Usage](https://github.com/BarisClb/ECommerceMicroserviceProject/blob/master/Services/UserService/Application/Queries/Address/GetAddressesByUserId/GetAddressesByUserIdQueryHandler.cs)  
   
    - Helpers  
      - [All Helpers](https://github.com/BarisClb/ECommerceMicroserviceProject/blob/master/Shared/SharedLibrary/Helpers)  
