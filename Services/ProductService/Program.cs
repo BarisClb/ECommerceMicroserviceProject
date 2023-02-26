@@ -1,12 +1,12 @@
 using FluentValidation.AspNetCore;
-using ProductService.Infrastructure;
+using ProductService;
 using SharedLibrary.Helpers;
 using SharedLibrary.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(options => options.Filters.Add<CustomValidationFilter>())
-    .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining(typeof(ProductService.Infrastructure.FluentValidation.ProductCreateRequestCommandValidator)));
+                 .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining(typeof(ProductService.Infrastructure.FluentValidation.ProductCreateRequestValidator)));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 ServiceRegistration.ProductServiceRegistration(builder.Services, builder.Configuration);

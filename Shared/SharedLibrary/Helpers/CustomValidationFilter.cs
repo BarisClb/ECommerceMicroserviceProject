@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 namespace SharedLibrary.Helpers
 {
@@ -12,6 +11,7 @@ namespace SharedLibrary.Helpers
         {
             _logger = logger;
         }
+
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {

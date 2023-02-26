@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using ProductService.Application.Interfaces;
 using ProductService.Application.Models.Request;
-using ProductService.Infrastructure.Settings;
 using SharedLibrary.Helpers;
 
 namespace ProductService.Controllers
@@ -12,19 +10,12 @@ namespace ProductService.Controllers
     public class CategoryController : CustomControllerBase
     {
         private readonly ICategoryService _categoryService;
-        private readonly IOptions<DatabaseSettings> _conf;
 
-        public CategoryController(ICategoryService categoryService, IOptions<DatabaseSettings> conf)
+        public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
-            _conf = conf;
         }
 
-        [HttpGet("test")]
-        public async Task<IActionResult> Test()
-        {
-            return Ok(new { _conf.Value.DatabaseName, _conf.Value.CategoryCollectionName, _conf.Value.ProductCollectionName, _conf.Value.ConnectionString });
-        }
 
         [HttpPost("createcategory")]
         public async Task<IActionResult> CreateCategory(CategoryCreateRequest categoryCreateRequest)
