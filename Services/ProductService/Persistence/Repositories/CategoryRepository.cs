@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Options;
+using ProductService.Application.Interfaces;
+using ProductService.Application.Settings;
 using ProductService.Domain.Entities;
-using ProductService.Infrastructure.Settings;
-using ProductService.Persistence.Interfaces;
 
 namespace ProductService.Persistence.Repositories
 {
-    public class CategoryRepository : MongoRepository<Category>, ICategoryRepository
+    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
         public CategoryRepository(IOptions<DatabaseSettings> databaseSettings) : base(databaseSettings.Value.ConnectionString, databaseSettings.Value.DatabaseName, databaseSettings.Value.CategoryCollectionName)
         { }

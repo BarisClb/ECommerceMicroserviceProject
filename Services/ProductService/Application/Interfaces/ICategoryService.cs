@@ -7,11 +7,11 @@ namespace ProductService.Application.Interfaces
 {
     public interface ICategoryService
     {
-        Task<Response<CategoryCreateRequest>> CreateCategory(CategoryCreateRequest categoryCreateRequest);
-        Task<Response<CategoryResponse>> UpdateCategory(CategoryUpdateRequest categoryUpdateRequest);
-        Task<Response<NoContent>> DeleteCategory(string categoryId);
-        Task<Response<IList<CategoryResponse>>> GetAllCategories();
-        Task<Response<CategoryResponse>> GetCategoryById(string categoryId);
-        Task<Response<IList<CategoryResponse>>> GetCategoriesByParentCategoryId(string categoryId);
+        Task<BaseResponse<CategoryCreateRequest>> CreateCategory(CategoryCreateRequest categoryCreateRequest);
+        Task<BaseResponse<CategoryResponse>> UpdateCategory(CategoryUpdateRequest categoryUpdateRequest);
+        Task<BaseResponse<NoContent>> DeleteCategory(string categoryId);
+        Task<BaseResponse<IList<CategoryResponse>>> GetAllCategories();
+        Task<BaseResponse<CategoryResponse>> GetCategoryById(string categoryId);
+        Task<BaseResponse<IList<CategoryResponse>>> GetCategoriesByParentCategoryId(string categoryId);
     }
 }

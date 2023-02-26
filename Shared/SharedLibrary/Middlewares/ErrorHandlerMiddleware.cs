@@ -3,9 +3,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SharedLibrary.Helpers;
 using SharedLibrary.Models;
-using System;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace SharedLibrary.Middlewares
 {
@@ -19,6 +17,7 @@ namespace SharedLibrary.Middlewares
             _next = next;
             _logger = logger;
         }
+
 
         public async Task Invoke(HttpContext context)
         {
@@ -52,7 +51,7 @@ namespace SharedLibrary.Middlewares
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = httpCode;
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(Response<NoContent>.Fail(message, httpCode)));
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(BaseResponse<NoContent>.Fail(message, httpCode)));
         }
     }
 }

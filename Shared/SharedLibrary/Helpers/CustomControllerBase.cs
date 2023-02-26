@@ -5,7 +5,7 @@ namespace SharedLibrary.Helpers
 {
     public class CustomControllerBase : ControllerBase
     {
-        public IActionResult CreateActionResultInstance<T>(Response<T> response)
+        public IActionResult CreateActionResultInstance<T>(BaseResponse<T> response)
         {
             return new ObjectResult(response)
             {

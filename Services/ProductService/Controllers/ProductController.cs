@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using ProductService.Application.Interfaces;
 using ProductService.Application.Models.Request;
-using ProductService.Infrastructure.Settings;
 using SharedLibrary.Helpers;
 
 namespace ProductService.Controllers
@@ -12,19 +10,12 @@ namespace ProductService.Controllers
     public class ProductController : CustomControllerBase
     {
         private readonly IProductService _productService;
-        private readonly IOptions<DatabaseSettings> _conf;
 
-        public ProductController(IProductService productService, IOptions<DatabaseSettings> conf)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
-            _conf = conf;
         }
 
-        [HttpGet("test")]
-        public async Task<IActionResult> Test()
-        {
-            return Ok(new { _conf.Value.DatabaseName, _conf.Value.CategoryCollectionName, _conf.Value.ProductCollectionName, _conf.Value.ConnectionString });
-        }
 
         [HttpPost("createproduct")]
         public async Task<IActionResult> CreateProduct(ProductCreateRequest productCreateRequest)
