@@ -3,14 +3,15 @@
   ### Goals of the Project:  
    - Refactor my [ECommerceProject](https://github.com/BarisClb/ECommerceProject) to Microservice.  
    - Deploy it on Cloud.  
-   - Create CI/CD automation with DevOps Tools.  
+   - Create CI/CD with DevOps Tools.  
   
   ### TODOs:  
   
    - Basket Service (Redis)  
    - Order Service  
    - Comment Service  
-   - Authorization / Authentication (JWT)     - Caching (One for Categories, Redis)  
+   - Authorization / Authentication (JWT)  
+   - Caching (One for Categories, Redis)  
    - Gateway / API for calls between UI (React) and Services  
    - Refactoring / Cleaning the UI (React) Project  
    - RabbitMq for Eventual Consistency  
