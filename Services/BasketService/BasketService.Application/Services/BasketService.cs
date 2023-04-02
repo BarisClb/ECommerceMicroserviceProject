@@ -19,7 +19,7 @@ namespace BasketService.Application.Services
             return await _basketRepository.GetBasket(userId.ToString()) ?? await _basketRepository.SetBasket(new Basket() { UserId = userId, Items = new List<BasketItem>() });
         }
 
-        public async Task<Basket> UpdateBasket(Basket basket)
+        public async Task<Basket> UpdateOrCreateBasket(Basket basket)
         {
             return await _basketRepository.SetBasket(basket);
         }
@@ -40,7 +40,7 @@ namespace BasketService.Application.Services
             else
                 item.Quantity++;
 
-            return await UpdateBasket(basket);
+            return await UpdateOrCreateBasket(basket);
         }
 
         public async Task<Basket> DecreaseOrDeleteBasketItem(UpdateBasketForItemRequest decreaseOrDeleteBasketItemRequest)
@@ -56,7 +56,7 @@ namespace BasketService.Application.Services
                     basket.Items.Remove(item);
             }
 
-            return await UpdateBasket(basket);
+            return await UpdateOrCreateBasket(basket);
         }
 
         public async Task<Basket> UpdateBasketItemQuantity(UpdateBasketForItemRequest updateBasketItemQuantityRequest)
@@ -69,7 +69,7 @@ namespace BasketService.Application.Services
             else
                 item.Quantity = updateBasketItemQuantityRequest.BasketItemQuantity ?? 0;
 
-            return await UpdateBasket(basket);
+            return await UpdateOrCreateBasket(basket);
         }
 
         public async Task<Basket> DeleteBasketItem(UpdateBasketForItemRequest deleteBasketItemRequest)
@@ -80,7 +80,7 @@ namespace BasketService.Application.Services
             if (item != null)
                 basket.Items.Remove(item);
 
-            return await UpdateBasket(basket);
+            return await UpdateOrCreateBasket(basket);
         }
 
         public async Task<Basket> ClearBasketItems(Guid userId)
@@ -90,7 +90,7 @@ namespace BasketService.Application.Services
             if (basket.Items.Count > 0)
                 basket.Items.Clear();
 
-            return await UpdateBasket(basket);
+            return await UpdateOrCreateBasket(basket);
         }
     }
 }

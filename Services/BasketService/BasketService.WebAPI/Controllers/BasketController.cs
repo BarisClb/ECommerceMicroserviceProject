@@ -23,16 +23,10 @@ namespace BasketService.WebAPI.Controllers
             return Ok(await _basketService.GetBasket(userId));
         }
 
-        [HttpPost("updateBasket")]
+        [HttpPost("updateOrCreateBasket")]
         public async Task<IActionResult> UpdateBasket(Basket basket)
         {
-            return Ok(await _basketService.UpdateBasket(basket));
-        }
-
-        [HttpDelete("deleteBasket/{userId}")]
-        public async Task<IActionResult> DeleteBasket(Guid userId)
-        {
-            return Ok(await _basketService.DeleteBasket(userId));
+            return Ok(await _basketService.UpdateOrCreateBasket(basket));
         }
 
         [HttpPut("increaseOrAddBasketItem")]
@@ -53,17 +47,22 @@ namespace BasketService.WebAPI.Controllers
             return Ok(await _basketService.UpdateBasketItemQuantity(updateBasketItemQuantityRequest));
         }
 
-        [HttpGet("deleteBasketItem")]
-        public async Task<IActionResult> DeleteBasketItem(UpdateBasketForItemRequest deleteBasketItemRequest)
+        [HttpDelete("deleteBasket/{userId}")]
+        public async Task<IActionResult> DeleteBasket(Guid userId)
         {
-            return Ok(await _basketService.DeleteBasketItem(deleteBasketItemRequest));
+            return Ok(await _basketService.DeleteBasket(userId));
         }
 
-        [HttpPost("clearBasketItems")]
+        [HttpDelete("clearBasketItems/{userId}")]
         public async Task<IActionResult> ClearBasketItems(Guid userId)
         {
             return Ok(await _basketService.ClearBasketItems(userId));
         }
 
+        [HttpDelete("deleteBasketItem")]
+        public async Task<IActionResult> DeleteBasketItem(UpdateBasketForItemRequest deleteBasketItemRequest)
+        {
+            return Ok(await _basketService.DeleteBasketItem(deleteBasketItemRequest));
+        }
     }
 }

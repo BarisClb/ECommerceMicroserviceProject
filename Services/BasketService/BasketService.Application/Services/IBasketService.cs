@@ -6,7 +6,7 @@ namespace BasketService.Application.Services
     public interface IBasketService
     {
         Task<Basket> GetBasket(Guid userId);
-        Task<Basket> UpdateBasket(Basket basket);
+        Task<Basket> UpdateOrCreateBasket(Basket basket);
         Task<bool> DeleteBasket(Guid userId);
         Task<Basket> IncreaseOrAddBasketItem(UpdateBasketForItemRequest increaseOrAddBasketItemRequest);
         Task<Basket> DecreaseOrDeleteBasketItem(UpdateBasketForItemRequest decreaseOrDeleteBasketItemRequest);
