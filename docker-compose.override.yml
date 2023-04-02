@@ -1,0 +1,109 @@
+version: '3.4'
+
+services:
+    mssqldb:
+        container_name: ecmp-mssqldb
+        restart: always
+        environment:
+            SA_PASSWORD: "Password123"
+            ACCEPT_EULA: "Y"
+        ports:
+            - "1433:1433"
+        volumes:
+            - ./Volumes/mssqldb/data:/var/opt/mssql/data
+
+    mongodb:
+        container_name: ecmp-mongodb
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: "root"
+            MONGO_INITDB_ROOT_PASSWORD: "Password123"
+        ports:
+            - "27017:27017"
+        volumes:
+            - ./Volumes/mongodb/data:/data
+
+    redisdb:
+        container_name: ecmp-redisdb
+        restart: always
+        command:  "--requirepass Password123"
+        ports:
+            - "6379:6379"
+        volumes:
+            - ./Volumes/redisdb/data:/data/db
+
+    #rabbitmq:
+    #    container_name: ecmp-redisdb
+    #    restart: always
+    #    environment:
+    #        - RABBITMQ_DEFAULT_USER=user
+    #        - RABBITMQ_DEFAULT_PASS=Password123
+    #    ports:
+    #        - "15672:15672"
+    #        - "5672:5672"
+    #    volumes:
+    #        - ./Volumes/rabbitmq/data:/var/lib/rabbitmq
+    #        - ./Volumes/rabbitmq/log:/var/log/rabbitmq
+
+    #elasticsearch:
+    #    container_name: ecmp-elasticsearch
+    #    restart: always
+    #    environment:
+    #        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    #        - xpack.monitoring.enabled=true
+    #        - xpack.watcher.enabled=false
+    #        - discovery.type=single-node
+    #    ports:
+    #        - "9200:9200"
+    #    volumes:
+    #        - ./Volumes/elasticsearch/data:/usr/share/elasticsearch/data
+
+    #kibana:
+    #    container_name: ecmp-kibana
+    #    restart: always
+    #    environment:        
+    #        - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    #    depends_on:
+    #        - elasticsearch
+    #    ports:
+    #        - "5601:5601"
+
+    userservice:
+        container_name: ecmp-userservice
+        restart: always
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - "ConnectionStrings__MsSqlConnection=Server=mssqldb,1433;Database=ECommerceMicroserviceProject;User=sa;Password=Password123;TrustServerCertificate=True;"
+        depends_on:
+            - mssqldb
+            #- elasticsearch
+            #- kibana
+        ports:
+            - "7000:80"
+
+    productservice:
+        container_name: ecmp-productservice
+        restart: always
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - "DatabaseSettings__ConnectionString=mongodb://mongodb:27017"
+        depends_on:
+            - mongodb
+            #- elasticsearch
+            #- kibana
+        ports:
+            - "7001:80"
+
+    basketservice:
+        container_name: ecmp-basketservice
+        restart: always
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - "RedisSettings__Host=redisdb"
+            - "RedisSettings__Port=6379"
+        depends_on:
+            - redisdb
+            #- elasticsearch
+            #- kibana
+        ports:
+            - "7002:80"

@@ -12,5 +12,19 @@ namespace SharedLibrary.Helpers
                 StatusCode = response.StatusCode
             };
         }
+
+        //[HttpGet("automappercontrol")]
+        //public async Task<IActionResult> AutoMapperControl()
+        //{
+        //    try
+        //    {
+        //        _mapper.ConfigurationProvider.AssertConfigurationIsValid();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    },
+        //    return Ok();
+        //}
     }
 }

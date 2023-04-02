@@ -1,5 +1,5 @@
 ﻿namespace SharedLibrary.Models
 {
-    internal class NoContent
+    public class NoContent
     { }
 }

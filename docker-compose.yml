@@ -1,0 +1,66 @@
+version: '3.4'
+
+networks:
+    ecmp-network:
+        name: ecmp-network
+        driver: bridge
+
+services:
+    mssqldb:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        networks:
+            - ecmp-network
+
+    mongodb:
+        image: mongo:6
+        networks:
+            - ecmp-network
+
+    redisdb:
+        image: redis:alpine
+        networks:
+            - ecmp-network
+
+    #rabbitmq:
+    #    image: rabbitmq:3.8.14-management
+    #    networks:
+    #        - ecmp-network
+
+    #elasticsearch:
+    #    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
+    #    networks:
+    #        - ecmp-network
+
+    #kibana:
+    #    image: docker.elastic.co/kibana/kibana:7.16.1
+    #    networks:
+    #        - ecmp-network
+
+    userservice:
+        image: ecmp-userservice
+        build:
+            context: .
+            dockerfile: Services/UserService/UserService.WebAPI/Dockerfile
+        networks:
+            - ecmp-network
+
+    productservice:
+        image: ecmp-productservice
+        build:
+            context: .
+            dockerfile: Services/ProductService/ProductService.WebAPI/Dockerfile
+        networks:
+            - ecmp-network
+            
+    basketservice:
+        image: ecmp-basketservice
+        build:
+            context: .
+            dockerfile: Services/BasketService/BasketService.WebAPI/Dockerfile
+        networks:
+            - ecmp-network
+
+volumes:
+    ecmp-mssqlvolume:
+    ecmp-mongovolume:
+    ecmp-redisvolume:
